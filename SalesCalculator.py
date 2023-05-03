@@ -44,6 +44,8 @@ class SalesCalculator():
         If the getPrice() method in the Hamburger class is non-existent 
     """
     salary = flat_rate
+    if len(self.__order_list)==0:
+      salary=0
     for b in self.__order_list:
       #see if it is a burger (has setside method)
       try:

@@ -148,7 +148,7 @@ while True:
 order_list = []
 with open('transactions.txt', 'r') as transactions:
   content = transactions.readlines()
-  content=[x for x in content if x.strip()]
+  content = [x for x in content if x.strip()]
   i = 0
   #Print previous burgers that customer personally bought and add to order_list
   user_address = None
@@ -157,19 +157,19 @@ with open('transactions.txt', 'r') as transactions:
   print("Order history saved in transactions.txt file" if user ==
         'c' else "Delivery List:")
   for line in content:
-    line = line.strip().lower()  #remove any trailing spaces/ empty lines and convert all to lowercase for program to proprely read
+    line = line.strip().lower(
+    )  #remove any trailing spaces/ empty lines and convert all to lowercase for program to proprely read
     full_order = line.split(":")
     #if not enough info
-    if len(full_order)<=1:
-      continue;
-   
+    if len(full_order) <= 1:
+      continue
+
     line = full_order[0]  # order should always be first section
     id = full_order[-1]  # id should always be last
     #check to see if there is a side. Side should be second section, however, if the second section is the id instead (in the case of no side), then there is no side
     side = None
     if full_order[1] != id:
       side = full_order[1]
-
 
     line = line.split(',')
     if not line or len(
@@ -213,19 +213,19 @@ with open('transactions.txt', 'r') as transactions:
         except IndexError:  #insufficient info
           continue
       if order != None:
-        
+
         if user == 'c':
           print(order)
           order_list.append(order)
         elif user == 'd':
-          with open ("delivered.txt",'r') as delivered:
-            ids=delivered.readlines()
+          with open("delivered.txt", 'r') as delivered:
+            ids = delivered.readlines()
           ids = [id.strip() for id in ids]
-          if order.id not in ids: # if not yet delivered this order
+          if order.id not in ids:  # if not yet delivered this order
             print(f"{i+1}. deliver {order} to {order.getAddress()}")
             i += 1
             order_list.append(order)
-          
+
         # list for delivery person to use ( find amount of money they will make, track what orders they completed )
 
 SalesCalculator = SalesCalculator(order_list)
@@ -248,7 +248,7 @@ if user == 'c':
         except ValueError:
           continue
       discount = getDiscount()
-      order = Fries(amount, user_address, discount,None)
+      order = Fries(amount, user_address, discount, None)
       displayOrder(order, discount)
       with open("transactions.txt", 'a') as fries:
         fries.write(f",{str(amount)}")
@@ -264,7 +264,7 @@ if user == 'c':
       #get discount (if there is any) based on reward points
       discount = getDiscount()
       #create order
-      order = Sushi(with_avacado, size, user_address, discount,None)
+      order = Sushi(with_avacado, size, user_address, discount, None)
       displayOrder(order, discount)
       with open("transactions.txt", 'a') as sushi:
         sushi.write(f",{str(with_avacado)},{size}")
@@ -273,8 +273,8 @@ if user == 'c':
     elif order_type == "burger":
       burgerType = input("Enter the type of burger (basic/healthy)")
       order = createType(
-        burgerType, set(), user_address,
-        None,None)  #set side to None for now, then wait for user to enter side. Set id for none, as the id will soon be written in the file, the id is not needed in the object when creating orders
+        burgerType, set(), user_address, None, None
+      )  #set side to None for now, then wait for user to enter side. Set id for none, as the id will soon be written in the file, the id is not needed in the object when creating orders
       if order != None:
         print(order)
         writeOrder(burgerType)
@@ -313,8 +313,8 @@ if user == 'c':
                 ["sushi", "fries"],
                 "COMBO-choose a side (fries/sushi) along with your burger for only $13"
               )
-              order.side=order.setSide(side)
-             
+              order.side = order.setSide(side)
+
               print(f"{order} now only costs $14")
               with open("transactions.txt", 'a') as combo:
                 combo.write(f":{side}")
@@ -354,13 +354,14 @@ elif user == 'd':
       continue
     try:
 
-      with open ("delivered.txt",'a') as d:
+      with open("delivered.txt", 'a') as d:
         d.write(f"{order_list[index-1].id}\n")
       del order_list[index - 1]
-      with open("delivered.txt",'r') as d:
-        delivered=d.readlines()
-        
-      if len(delivered)==3: # set to low amountn of deliverys for testing purposes
+      with open("delivered.txt", 'r') as d:
+        delivered = d.readlines()
+
+      if len(delivered
+             ) == 3:  # set to low amountn of deliverys for testing purposes
         print("YOU HAVE BEEN PROMOTED!")
       if len(order_list) < 1:
         print(
