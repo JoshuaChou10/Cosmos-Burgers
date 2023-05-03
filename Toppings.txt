@@ -1,0 +1,8 @@
+When entering orders in the transaction.txt file you can use these toppings
+
+chicken
+tomato
+flaxseed
+bacon
+cheese
+

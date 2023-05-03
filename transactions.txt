@@ -1,0 +1,10 @@
+
+3234,healthy:sushi:e65c26f8-e90b-11ed-bea9-63f2860e596c
+3234
+3234
+3234,basic,chicken:fries:86d27fce-e90c-11ed-9f6f-4540d20a48ca
+3234
+3234,healthy:fries:d4499417-e90c-11ed-a6f5-035d571363df
+
+3234,fries,2:8a01b843-e9dc-11ed-8666-55e0a8e40daf
+3234
